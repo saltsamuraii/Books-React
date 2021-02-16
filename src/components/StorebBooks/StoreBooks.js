@@ -26,16 +26,17 @@ function StoreBooks({}) {
 
     return (
         <div>
-            {booksData.map(({title, author, year,image}) => (
-                <div className={s.containerItem}>
+            {booksData.map(({title, author, year, image}) => (
+                <div className={s.container}>
                     <img src={image}
                          className={s.img}
                          alt="bookImage"/>
-                    <h1>{title}</h1>
-                    <p>{author}</p>
-                    <p>{year}</p>
-
                     <div>
+                        <h2>{title}</h2>
+                        <p>{author}</p>
+                        <p>{year}</p>
+                    </div>
+                    <div className={s.buttons}>
                         <button>Редактировать</button>
                         <button>Удалить</button>
                     </div>
