@@ -3,8 +3,11 @@ import './App.css';
 
 //Components
 import BookList from "./components/BookList/BookList";
-import Modal from "./components/Modal";
+import Modal from "./components/Modal/Modal";
 import StoreBooks from "./components/StorebBooks/StoreBooks";
+
+//State
+import state from "./redux/state";
 
 
 //Hooks
@@ -30,7 +33,8 @@ function App() {
                 onClose={() => setIsOpen(false)}
             />
 
-            <StoreBooks/>
+            <StoreBooks
+            />
 
             <BookList
                 setBooks={setBooks}
