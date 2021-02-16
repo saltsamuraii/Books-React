@@ -7,14 +7,11 @@ import Modal from "./components/Modal";
 import StoreBooks from "./components/StorebBooks/StoreBooks";
 
 
-
-
 //Hooks
 function App() {
     const [IsOpen, setIsOpen] = useState(false);
     const [inputText, setInputText] = useState('');
     const [books, setBooks] = useState([]);
-
 
 
     return (
@@ -33,7 +30,8 @@ function App() {
                 onClose={() => setIsOpen(false)}
             />
 
-<StoreBooks/>
+            <StoreBooks/>
+
             <BookList
                 setBooks={setBooks}
                 books={books}
