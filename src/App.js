@@ -14,6 +14,8 @@ import state from "./redux/state";
 function App() {
     const [IsOpen, setIsOpen] = useState(false);
     const [inputText, setInputText] = useState('');
+    const [inputAuthor, setInputAuthor] = useState('');
+    const [inputYear, setInputYear] = useState('');
     const [books, setBooks] = useState([]);
 
 
@@ -29,12 +31,14 @@ function App() {
                 setBooks={setBooks}
                 inputText={inputText}
                 setInputText={setInputText}
+                inputAuthor={inputAuthor}
+                setInputAuthor={setInputAuthor}
+                inputYear={inputYear}
+                setInputYear={setInputYear}
                 open={IsOpen}
                 onClose={() => setIsOpen(false)}
             />
-
             <StoreBooks/>
-
             <BookList
                 setBooks={setBooks}
                 books={books}
