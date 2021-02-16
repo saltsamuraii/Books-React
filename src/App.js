@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import './App.css';
 
 //Components
-import BookList from "./components/BookList";
+import BookList from "./components/BookList/BookList";
 import Modal from "./components/Modal";
+import StoreBooks from "./components/StorebBooks/StoreBooks";
 
-//Redux
-import store from "../src/redux/store"
+
 
 
 //Hooks
@@ -14,6 +14,8 @@ function App() {
     const [IsOpen, setIsOpen] = useState(false);
     const [inputText, setInputText] = useState('');
     const [books, setBooks] = useState([]);
+
+
 
     return (
         <div className="App">
@@ -30,6 +32,8 @@ function App() {
                 open={IsOpen}
                 onClose={() => setIsOpen(false)}
             />
+
+<StoreBooks/>
             <BookList
                 setBooks={setBooks}
                 books={books}

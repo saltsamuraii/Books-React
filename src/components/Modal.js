@@ -4,7 +4,7 @@ function Modal({open, onClose, inputText, setInputText, books, setBooks}) {
     if (!open) return null;
 
     const inputTextHandler = (e) => {
-        setInputText(e.target.value);
+       setInputText(e.target.value);
     };
 
     const submitTodoHandler = (e) => {
@@ -25,18 +25,21 @@ function Modal({open, onClose, inputText, setInputText, books, setBooks}) {
                 <h2>Редактирование книги</h2>
                 <p>Наименование</p>
                 <input type="text"
+                       name="title"
                        value={inputText.title}
                        onChange={inputTextHandler}/>
                 <p>Автор</p>
                 <input type="text"
+                       name="author"
                        value={inputText.author}
                        onChange={inputTextHandler}/>
                 <p>Год выпуска</p>
-                <input type="text"
+                <input type="number"
+                       value={inputText.year}
                        onChange={inputTextHandler}/>
                 <p>Изображение</p>
                 <input type="link"
-                       onChange={inputTextHandler}/>
+                       />
             </div>
             <div>
                 <button onClick={submitTodoHandler} type="submit">Сохранить</button>
