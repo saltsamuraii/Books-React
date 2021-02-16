@@ -33,8 +33,7 @@ function App() {
                 onClose={() => setIsOpen(false)}
             />
 
-            <StoreBooks
-            />
+            <StoreBooks/>
 
             <BookList
                 setBooks={setBooks}
