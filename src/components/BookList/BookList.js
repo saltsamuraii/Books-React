@@ -9,6 +9,7 @@ const BookList = ({ books, setBooks}) => {
         <div>
             {books.map((book) => (
                 <Book
+                    //removeBook={removeBook}
                     setBooks={setBooks}
                     books={books}
                     key={book.title}

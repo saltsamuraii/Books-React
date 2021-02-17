@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from "react";
+
+//Css
 import './App.css';
 
 //Components
@@ -9,7 +11,6 @@ import StoreBooks from "./components/StorebBooks/StoreBooks";
 //State
 import state from "./redux/state";
 
-
 //Hooks
 function App() {
     const [IsOpen, setIsOpen] = useState(false);
@@ -19,14 +20,20 @@ function App() {
     const [books, setBooks] = useState([]);
 
 
+
+    //Events
+    const removeBook = (id) => {
+        console.log(id)
+    };
+
+
     return (
         <div className="App">
             <h1>Книжная полка</h1>
-            <button className="btn"
-                    onClick={() => setIsOpen(true)}>
-                Добавить книгу
-            </button>
+            <button className="btn" onClick={() => setIsOpen(true)}>Добавить книгу</button>
             <Modal
+                open={IsOpen}
+                onClose={() => setIsOpen(false)}
                 books={books}
                 setBooks={setBooks}
                 inputText={inputText}
@@ -35,11 +42,10 @@ function App() {
                 setInputAuthor={setInputAuthor}
                 inputYear={inputYear}
                 setInputYear={setInputYear}
-                open={IsOpen}
-                onClose={() => setIsOpen(false)}
             />
-            <StoreBooks/>
+            <StoreBooks removeBook={removeBook}/>
             <BookList
+                //removeBook={removeBook}
                 setBooks={setBooks}
                 books={books}
             />

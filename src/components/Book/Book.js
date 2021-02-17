@@ -5,8 +5,13 @@ const Book = ({title, author, year, book, books, setBooks}) => {
 
     //Events
     const deleteHandler = () => {
-        setBooks(books.filter((el) => el.title !== book.title));
+       setBooks(books.filter((el) => el.title !== book.title));
     };
+    const editHandler = (e) => {
+        e.preventDefault()
+        console.log(books.title)
+    }
+    //const {removeBook} = (props)
 
     return (
         <div className={s.container}>
@@ -18,9 +23,8 @@ const Book = ({title, author, year, book, books, setBooks}) => {
                 <p>{author}</p>
                 <p>{year}</p>
             </div>
-
             <div className={s.buttons}>
-                <button>Редактировать</button>
+                <button onChange={editHandler}>Редактировать</button>
                 <button onClick={deleteHandler}>Удалить</button>
             </div>
         </div>

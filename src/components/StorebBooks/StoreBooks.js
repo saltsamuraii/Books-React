@@ -1,16 +1,12 @@
 import React from 'react';
 import s from "./StoreBook.module.css";
 
-function StoreBooks({}) {
+function StoreBooks(props) {
+
+        const { removeBook } = props;
 
 
-    //Events
-    const deleteHandler = () => {
-        console.log(booksData)
-        booksData.pop();
-    };
-
-    const booksData = [
+        const booksData = [
         {
             id: 1,
             title: "Java Script и Jquery",
@@ -19,12 +15,14 @@ function StoreBooks({}) {
             image: "https://cdn1.ozone.ru/multimedia/c500/1016412966.jpg"
         },
         {
+            id: 2,
             title: "ES6 и не только",
             author: "Кайл Симпсон",
             year: 2017,
             image: "https://cv2.litres.ru/pub/c/pdf-kniga/cover/39123625-kayl-simpson-es6-i-ne-tolko-39123625.jpg_330.jpg"
         },
         {
+            id: 3,
             title: "Секреты JavaScript ниндзя",
             author: "Джон Резиг",
             year: 2017,
@@ -47,7 +45,7 @@ function StoreBooks({}) {
 
                     <div className={s.buttons}>
                         <button>Редактировать</button>
-                        <button onClick={deleteHandler}>Удалить</button>
+                        <button onClick={removeBook}>Удалить</button>
                     </div>
                 </div>
             ))}

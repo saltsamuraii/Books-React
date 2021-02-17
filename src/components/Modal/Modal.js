@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Modal({ open, onClose, inputText, setInputText, books, setBooks, inputAuthor, setInputAuthor, inputYear, setInputYear }) {
+function Modal({open, onClose, inputText, setInputText, books, setBooks, inputAuthor, setInputAuthor, inputYear, setInputYear}) {
     if (!open) return null;
 
     //Inputs text
@@ -14,6 +14,8 @@ function Modal({ open, onClose, inputText, setInputText, books, setBooks, inputA
         setInputYear(e.target.value)
     }
 
+
+
     //Event
     const submitTodoHandler = (e) => {
         e.preventDefault();
@@ -26,14 +28,14 @@ function Modal({ open, onClose, inputText, setInputText, books, setBooks, inputA
         ]);
         setInputText('');
         setInputAuthor('');
-        setInputYear('');
+        setInputYear(Number);
     };
 
     return (
         <div>
-            <div>
-                <h2>Редактирование книги</h2>
-                <form>
+            <form>
+                <div>
+                    <h2>Редактирование книги</h2>
                     <p>Наименование</p>
                     <input type="text"
                            name="title"
@@ -46,18 +48,18 @@ function Modal({ open, onClose, inputText, setInputText, books, setBooks, inputA
                            onChange={inputAuthorHandler}/>
                     <p>Год выпуска</p>
                     <input type="number"
-                           min="2017"
+                           min="2000"
+                           max="2017"
                            value={inputYear.year}
                            onChange={inputYearHandler}/>
                     <p>Изображение</p>
-                    <input type="link"
-                    />
-                </form>
-            </div>
-            <div>
-                <button onClick={submitTodoHandler} type="submit">Сохранить</button>
-                <button onClick={onClose}>Отменить</button>
-            </div>
+                    <input type="url"/>
+                </div>
+                <div>
+                    <button onClick={submitTodoHandler} type="submit">Сохранить</button>
+                    <button onClick={onClose}>Отменить</button>
+                </div>
+            </form>
         </div>
     );
 }
