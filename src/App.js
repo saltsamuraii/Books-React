@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 //Css
 import './App.css';
@@ -6,12 +6,12 @@ import './App.css';
 //Components
 import BookList from "./components/BookList/BookList";
 import Modal from "./components/Modal/Modal";
+import EditModal from "./components/EditModal/EditModal";
 import StoreBooks from "./components/StorebBooks/StoreBooks";
 
 
-
-//Hooks
 function App() {
+    //State
     const booksData = [
         {
             title: "Java Script и Jquery",
@@ -33,6 +33,7 @@ function App() {
         },
     ];
 
+    //Hooks
     const [IsOpen, setIsOpen] = useState(false);
     const [inputText, setInputText] = useState('');
     const [inputAuthor, setInputAuthor] = useState('');
@@ -40,14 +41,21 @@ function App() {
     const [books, setBooks] = useState(booksData);
     const [book, setBook] = useState([]);
 
+//--------------------
+    const [name, setName] = useState(book.title)
 
+    //---------------------
+
+
+
+    //Events
     const bookRemoveHandler = (title) => {
         setBooks(books.filter((book) => book.title !== title));
     };
 
-    const bookEditHandler = (title) => {
-      //setBooks(books.filter((book) => ));
-console.log(title)
+    const bookEditHandler = (title, updatedTitle) => {
+        setBooks(books.map((book) => book.title === title ? updatedTitle : book));
+        console.log(title, updatedTitle)
     };
 
     return (
@@ -56,7 +64,7 @@ console.log(title)
             <button className="btn" onClick={() => setIsOpen(true)}>
                 Добавить книгу
             </button>
-            <Modal
+            {/*<Modal
                 books={books}
                 setBooks={setBooks}
                 inputText={inputText}
@@ -67,7 +75,12 @@ console.log(title)
                 setInputYear={setInputYear}
                 open={IsOpen}
                 onClose={() => setIsOpen(false)}
-            />
+            />*/}
+            <EditModal
+                name={name}
+                setName={setName}
+                books={booksData}
+                            />
             <StoreBooks
                 books={books}
                 onRemove={bookRemoveHandler}
@@ -78,7 +91,7 @@ console.log(title)
                 setBook={setBook}
                 onEdit={bookEditHandler}
                 onRemove={bookRemoveHandler}
-                />
+            />
         </div>
     );
 }

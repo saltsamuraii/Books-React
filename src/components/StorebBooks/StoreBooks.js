@@ -4,8 +4,8 @@ import s from "./StoreBook.module.css";
 function StoreBooks({onRemove, onEdit, books}) {
 
     //Events
-    const bookEditHandler = (title) => {
-        onEdit(title);
+    const bookEditHandler = (title, author, year) => {
+        onEdit(title, author, year);
     };
 
     const bookRemoveHandler = (title) => {
@@ -24,7 +24,7 @@ function StoreBooks({onRemove, onEdit, books}) {
                     </div>
 
                     <div className={s.buttons}>
-                        <button onClick={() => bookEditHandler(title)}>Редактировать</button>
+                        <button onClick={() => bookEditHandler(title, author, year)}>Редактировать</button>
                         <button onClick={() => bookRemoveHandler(title)}>Удалить</button>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ function Modal({open, onClose, inputText, setInputText, books, setBooks, inputAu
         ]);
         setInputText('');
         setInputAuthor('');
-        setInputYear(Number);
+        setInputYear();
     };
 
     return (
@@ -37,21 +37,21 @@ function Modal({open, onClose, inputText, setInputText, books, setBooks, inputAu
                     <p>Наименование</p>
                     <input type="text"
                            name="title"
-                           value={inputText.title}
+                           value={inputText}
                            onChange={inputTextHandler}/>
                     <p>Автор</p>
                     <input type="text"
                            name="author"
-                           value={inputAuthor.author}
+                           value={inputAuthor}
                            onChange={inputAuthorHandler}/>
                     <p>Год выпуска</p>
                     <input type="number"
                            min="2000"
                            max="2017"
-                           value={inputYear.year}
+                           value={inputYear}
                            onChange={inputYearHandler}/>
                     <p>Изображение</p>
-                    <input type="url"/>
+                    <input type="url" required/>
                 </div>
                 <div>
                     <button onClick={submitTodoHandler} type="submit">Сохранить</button>
