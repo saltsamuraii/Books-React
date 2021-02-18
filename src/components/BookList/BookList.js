@@ -4,19 +4,18 @@ import React from 'react';
 import Book from "../Book/Book";
 
 
-const BookList = ({ books, setBooks}) => {
+const BookList = ({ book, setBook, onRemove}) => {
     return (
         <div>
-            {books.map((book) => (
+            {book.map((book) => (
                 <Book
-                    //removeBook={removeBook}
-                    setBooks={setBooks}
-                    books={books}
+                    setBook={setBook}
                     key={book.title}
                     book={book}
                     year={book.year}
                     author={book.author}
                     title={book.title}
+                    onRemove={onRemove}
                 />
             ))}
         </div>

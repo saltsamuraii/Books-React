@@ -1,17 +1,12 @@
 import React from 'react';
 import s from './Book.module.css'
 
-const Book = ({title, author, year, book, books, setBooks}) => {
+const Book = ({title, author, year, onRemove}) => {
 
     //Events
-    const deleteHandler = () => {
-       setBooks(books.filter((el) => el.title !== book.title));
+    const bookRemoveHandler = (title) => {
+        onRemove(title);
     };
-    const editHandler = (e) => {
-        e.preventDefault()
-        console.log(books.title)
-    }
-    //const {removeBook} = (props)
 
     return (
         <div className={s.container}>
@@ -24,8 +19,8 @@ const Book = ({title, author, year, book, books, setBooks}) => {
                 <p>{year}</p>
             </div>
             <div className={s.buttons}>
-                <button onChange={editHandler}>Редактировать</button>
-                <button onClick={deleteHandler}>Удалить</button>
+                <button>Редактировать</button>
+                <button onClick={bookRemoveHandler}>Удалить</button>
             </div>
         </div>
     );

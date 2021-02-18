@@ -14,8 +14,6 @@ function Modal({open, onClose, inputText, setInputText, books, setBooks, inputAu
         setInputYear(e.target.value)
     }
 
-
-
     //Event
     const submitTodoHandler = (e) => {
         e.preventDefault();
