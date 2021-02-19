@@ -42,7 +42,7 @@ function App() {
     const [IsOpen, setIsOpen] = useState(false);
 
 
-    const data = [{title: ''}]
+    const data = {title: ''}
 
     const [editing, setEditing] = useState(false)
     const [currentBook, setCurrentBook] = useState(data)
@@ -67,7 +67,7 @@ function App() {
     };
 
 
-    const bookEditHandler = (title, updateTitle) => {
+    const updateBook = (title, updateTitle) => {
         setEditing(false);
         setBooks(books.map((book) => book.title === title ? updateTitle : book));
         console.log(title, updateTitle)
@@ -76,6 +76,7 @@ function App() {
     const editRow = item => {
         setEditing(true);
         setCurrentBook({title: item.title});
+        console.log(item.title)
     };
 
 
@@ -86,16 +87,23 @@ function App() {
                 Добавить книгу
             </button>
             {editing ? (
-                    <EditModal
-                        setBooks={setBooks}
-                        book={book}
-                        setBook={setBook}
-                        books={books}
-                        setEditing={setEditing}
-                        editing={editing}
-                        currentBook={currentBook}
-                        onEdit={bookEditHandler}
-                    />
+                <EditModal
+                    setBooks={setBooks}
+                    book={book}
+                    setBook={setBook}
+                    books={books}
+
+
+                    open={IsOpen}
+                    onClose={() => setIsOpen(false)}
+
+
+setCurrentBook={setCurrentBook}
+                    currentBook={currentBook}
+                    editing={editing}
+                    setEditing={setEditing}
+                    updateBook={updateBook}
+                />
             ) : (
                 <AddForm
                     inputText={inputText}
@@ -112,14 +120,13 @@ function App() {
             <StoreBooks
                 books={books}
                 onRemove={bookRemoveHandler}
-                onEdit={bookEditHandler}
                 editRow={editRow}
             />
-            <BookList
+            {/*<BookList
                 book={book}
                 setBook={setBook}
                 onRemove={bookRemoveHandler}
-            />
+            />*/}
 
         </div>
     );

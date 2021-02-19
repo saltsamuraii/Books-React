@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./StoreBook.module.css";
 
-function StoreBooks({onRemove, onEdit, books, editRow}) {
+function StoreBooks({onRemove, onEdit, books, editRow, currentBook}) {
 
     //Events
     const bookEditHandler = (title, author, year) => {
