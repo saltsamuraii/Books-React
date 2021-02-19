@@ -1,7 +1,6 @@
 import React from 'react';
 
-function EditModal({open, onClose, books, onEdit}) {
-    if (open) return true;
+function EditModal({onClose, books, onEdit}) {
 
 
     const {bookEditHandler} = (books) => {
@@ -30,7 +29,7 @@ function EditModal({open, onClose, books, onEdit}) {
                 <input type="url"/>
             </div>
             <div>
-                <button type="submit">Update</button>
+                <button type="submit" onClick={bookEditHandler}>Сохранить</button>
                 <button onClick={onClose}>Отменить</button>
             </div>
         </div>

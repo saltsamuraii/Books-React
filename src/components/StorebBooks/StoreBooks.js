@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./StoreBook.module.css";
 
-function StoreBooks({onRemove, onEdit, books}) {
+function StoreBooks({onRemove, onEdit, books, editRow}) {
 
     //Events
     const bookEditHandler = (title, author, year) => {
@@ -14,18 +14,18 @@ function StoreBooks({onRemove, onEdit, books}) {
 
     return (
         <div>
-            {books.map(({title, author, year, image}) => (
+            {books.map((book) => (
                 <div className={s.container}>
-                    <img src={image} className={s.img} alt="bookImage"/>
+                    <img src={book.image} className={s.img} alt="bookImage"/>
                     <div>
-                        <h2>{title}</h2>
-                        <p>{author}</p>
-                        <p>{year}</p>
+                        <h2>{book.title}</h2>
+                        <p>{book.author}</p>
+                        <p>{book.year}</p>
                     </div>
 
                     <div className={s.buttons}>
-                        <button onClick={() => bookEditHandler(title, author, year)}>Редактировать</button>
-                        <button onClick={() => bookRemoveHandler(title)}>Удалить</button>
+                        <button onClick={() => editRow(book)}>Редактировать</button>
+                        <button onClick={() => bookRemoveHandler(book.title)}>Удалить</button>
                     </div>
                 </div>
             ))}

@@ -41,6 +41,12 @@ function App() {
     const [inputYear, setInputYear] = useState('');
     const [IsOpen, setIsOpen] = useState(false);
 
+
+    const data = [{title: ''}]
+
+    const [editing, setEditing] = useState(false)
+    const [currentBook, setCurrentBook] = useState(data)
+
     //Events
     const bookAddHandler = (e) => {
         e.preventDefault();
@@ -60,10 +66,18 @@ function App() {
         setBooks(books.filter((book) => book.title !== title));
     };
 
+
     const bookEditHandler = (title, updateTitle) => {
+        setEditing(false);
         setBooks(books.map((book) => book.title === title ? updateTitle : book));
         console.log(title, updateTitle)
     };
+
+    const editRow = item => {
+        setEditing(true);
+        setCurrentBook({title: item.title});
+    };
+
 
     return (
         <div className="App">
@@ -71,33 +85,42 @@ function App() {
             <button className="btn" onClick={() => setIsOpen(true)}>
                 Добавить книгу
             </button>
-            <AddForm
-                inputText={inputText}
-                setInputText={setInputText}
-                inputAuthor={inputAuthor}
-                setInputAuthor={setInputAuthor}
-                inputYear={inputYear}
-                setInputYear={setInputYear}
-                open={IsOpen}
-                onClose={() => setIsOpen(false)}
-                onAdd={bookAddHandler}
-            />
+            {editing ? (
+                    <EditModal
+                        setBooks={setBooks}
+                        book={book}
+                        setBook={setBook}
+                        books={books}
+                        setEditing={setEditing}
+                        editing={editing}
+                        currentBook={currentBook}
+                        onEdit={bookEditHandler}
+                    />
+            ) : (
+                <AddForm
+                    inputText={inputText}
+                    setInputText={setInputText}
+                    inputAuthor={inputAuthor}
+                    setInputAuthor={setInputAuthor}
+                    inputYear={inputYear}
+                    setInputYear={setInputYear}
+                    open={IsOpen}
+                    onClose={() => setIsOpen(false)}
+                    onAdd={bookAddHandler}
+                />
+            )}
             <StoreBooks
                 books={books}
                 onRemove={bookRemoveHandler}
                 onEdit={bookEditHandler}
+                editRow={editRow}
             />
             <BookList
                 book={book}
                 setBook={setBook}
                 onRemove={bookRemoveHandler}
             />
-            <EditModal
-                setBooks={setBooks}
-                book={book}
-                setBook={setBook}
-                books={books}
-            />
+
         </div>
     );
 }
