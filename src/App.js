@@ -35,14 +35,14 @@ function App() {
 
     //Hooks
     const [books, setBooks] = useState(booksData);
-    const [book, setBook] = useState([]);
+    //const [book, setBook] = useState([]);
     const [inputText, setInputText] = useState('');
     const [inputAuthor, setInputAuthor] = useState('');
     const [inputYear, setInputYear] = useState('');
     const [IsOpen, setIsOpen] = useState(false);
 
 
-    const data = {title: ''}
+    const data = {title: '', author: '', year: ''}
 
     const [editing, setEditing] = useState(false)
     const [currentBook, setCurrentBook] = useState(data)
@@ -66,17 +66,14 @@ function App() {
         setBooks(books.filter((book) => book.title !== title));
     };
 
-
-    const updateBook = (title, updateTitle) => {
+    const updateBook = (title, updatedBook) => {
         setEditing(false);
-        setBooks(books.map((book) => book.title === title ? updateTitle : book));
-        console.log(title, updateTitle)
+        setBooks(books.map((book) => book.title === title ? updatedBook : book));
     };
 
-    const editRow = item => {
+    const editRow = book => {
         setEditing(true);
-        setCurrentBook({title: item.title});
-        console.log(item.title)
+        setCurrentBook({title: book.title, author: book.author, year: book.year, image: book.image});
     };
 
 
@@ -89,16 +86,15 @@ function App() {
             {editing ? (
                 <EditModal
                     setBooks={setBooks}
-                    book={book}
-                    setBook={setBook}
+                    //book={book}
+                    //setBook={setBook}
                     books={books}
 
 
                     open={IsOpen}
                     onClose={() => setIsOpen(false)}
 
-
-setCurrentBook={setCurrentBook}
+                    setCurrentBook={setCurrentBook}
                     currentBook={currentBook}
                     editing={editing}
                     setEditing={setEditing}

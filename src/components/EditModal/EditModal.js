@@ -1,6 +1,6 @@
 import React from 'react';
 
-function EditModal({currentBook, setCurrentBook, open, onEdit, setEditing}) {
+function EditModal({currentBook, updateBook, setCurrentBook, open, setEditing}) {
     if (!open) return null;
 
 
@@ -10,8 +10,16 @@ function EditModal({currentBook, setCurrentBook, open, onEdit, setEditing}) {
         setCurrentBook({...currentBook, [bookName]: value})
     }
 
+    const handleSubmit = event => {
+        event.preventDefault()
+        if (!currentBook.title || !currentBook.author || !currentBook.year || !currentBook.image) return
+
+        updateBook(currentBook.title, currentBook)
+    }
+
     return (
         <div>
+            <form onSubmit={handleSubmit}>
             <div>
                 <h2>Редактирование книги</h2>
                 <p>Наименование</p>
@@ -34,12 +42,16 @@ function EditModal({currentBook, setCurrentBook, open, onEdit, setEditing}) {
                        onChange={handleInputChange}
                 />
                 <p>Изображение</p>
-                <input type="url"/>
+                <input type="url"
+                       value={currentBook.image}
+                       onChange={handleInputChange}
+                />
             </div>
             <div>
                 <button type="submit">Обновить</button>
                 <button onClick={() => setEditing(false)}>Отменить</button>
             </div>
+            </form>
         </div>
     );
 }
