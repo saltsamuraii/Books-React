@@ -1,7 +1,12 @@
 import React from 'react';
 
-function Modal({open, onClose, inputText, setInputText, books, setBooks, inputAuthor, setInputAuthor, inputYear, setInputYear}) {
+function Modal({open, onClose, onAdd, inputText, setInputText, inputAuthor, setInputAuthor, inputYear, setInputYear}) {
     if (!open) return null;
+
+    //Events
+    const bookAddHandler = (title, author, year) => {
+        onAdd(title, author, year);
+    }
 
     //Inputs text
     const inputTextHandler = (e) => {
@@ -14,20 +19,6 @@ function Modal({open, onClose, inputText, setInputText, books, setBooks, inputAu
         setInputYear(e.target.value)
     }
 
-    //Event
-    const submitTodoHandler = (e) => {
-        e.preventDefault();
-        setBooks([
-            ...books, {
-                title: inputText,
-                author: inputAuthor,
-                year: inputYear,
-            }
-        ]);
-        setInputText('');
-        setInputAuthor('');
-        setInputYear();
-    };
 
     return (
         <div>
@@ -54,7 +45,7 @@ function Modal({open, onClose, inputText, setInputText, books, setBooks, inputAu
                     <input type="url" required/>
                 </div>
                 <div>
-                    <button onClick={submitTodoHandler} type="submit">Сохранить</button>
+                    <button onClick={bookAddHandler} type="submit">Сохранить</button>
                     <button onClick={onClose}>Отменить</button>
                 </div>
             </form>

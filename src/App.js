@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
 //Css
 import './App.css';
@@ -41,21 +41,33 @@ function App() {
     const [books, setBooks] = useState(booksData);
     const [book, setBook] = useState([]);
 
-//--------------------
-    const [name, setName] = useState(book.title)
 
+    //--------------------
+    const [name, setName] = useState(book.title)
     //---------------------
 
-
-
     //Events
+    const bookAddHandler = (e) => {
+        e.preventDefault();
+        setBooks([
+            ...books, {
+                title: inputText,
+                author: inputAuthor,
+                year: inputYear,
+            }
+        ]);
+        setInputText('');
+        setInputAuthor('');
+        setInputYear('');
+    };
+
     const bookRemoveHandler = (title) => {
         setBooks(books.filter((book) => book.title !== title));
     };
 
-    const bookEditHandler = (title, updatedTitle) => {
-        setBooks(books.map((book) => book.title === title ? updatedTitle : book));
-        console.log(title, updatedTitle)
+    const bookEditHandler = (title, updateBook) => {
+        setBooks(books.map((book) => books.title === title ? updateBook : book));
+        console.log(title, updateBook)
     };
 
     return (
@@ -64,9 +76,7 @@ function App() {
             <button className="btn" onClick={() => setIsOpen(true)}>
                 Добавить книгу
             </button>
-            {/*<Modal
-                books={books}
-                setBooks={setBooks}
+            <Modal
                 inputText={inputText}
                 setInputText={setInputText}
                 inputAuthor={inputAuthor}
@@ -75,12 +85,8 @@ function App() {
                 setInputYear={setInputYear}
                 open={IsOpen}
                 onClose={() => setIsOpen(false)}
-            />*/}
-            <EditModal
-                name={name}
-                setName={setName}
-                books={booksData}
-                            />
+                onAdd={bookAddHandler}
+            />
             <StoreBooks
                 books={books}
                 onRemove={bookRemoveHandler}
@@ -91,6 +97,14 @@ function App() {
                 setBook={setBook}
                 onEdit={bookEditHandler}
                 onRemove={bookRemoveHandler}
+            />
+            <EditModal
+                setBooks={setBooks}
+                book={book}
+                name={name}
+                onEdit={bookEditHandler}
+                setName={setName}
+                books={books}
             />
         </div>
     );

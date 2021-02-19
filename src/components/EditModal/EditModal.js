@@ -1,10 +1,12 @@
 import React from 'react';
 
-function EditModal({name, setName, open, onClose, books}) {
+function EditModal({open, onClose, books, onEdit}) {
     if (open) return true;
 
-    const BookTitle = books.title;
 
+   const { bookEditHandler } = (books) => {
+             onEdit(books);
+   }
 
     return (
         <div>
@@ -14,7 +16,7 @@ function EditModal({name, setName, open, onClose, books}) {
                     <p>Наименование</p>
                     <input type="text"
                            name="title"
-                           value={name}
+                           value={books}
                     />
                     <p>Автор</p>
                     <input type="text"
@@ -29,7 +31,7 @@ function EditModal({name, setName, open, onClose, books}) {
                     <input type="url"/>
                 </div>
                 <div>
-                    <button type="submit">Update</button>
+                    <button type="submit" onClick={() => bookEditHandler(books)}>Update</button>
                     <button onClick={onClose}>Отменить</button>
                 </div>
             </form>
