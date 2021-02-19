@@ -10,8 +10,8 @@ const BookList = ({ book, setBook, onRemove}) => {
             {book.map((book) => (
                 <Book
                     setBook={setBook}
-                    key={book.title}
                     book={book}
+                    key={book.title}
                     year={book.year}
                     author={book.author}
                     title={book.title}

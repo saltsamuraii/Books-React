@@ -5,7 +5,7 @@ import './App.css';
 
 //Components
 import BookList from "./components/BookList/BookList";
-import Modal from "./components/Modal/Modal";
+import AddForm from "./components/AddForm/AddForm";
 import EditModal from "./components/EditModal/EditModal";
 import StoreBooks from "./components/StorebBooks/StoreBooks";
 
@@ -34,17 +34,12 @@ function App() {
     ];
 
     //Hooks
-    const [IsOpen, setIsOpen] = useState(false);
+    const [books, setBooks] = useState(booksData);
+    const [book, setBook] = useState([]);
     const [inputText, setInputText] = useState('');
     const [inputAuthor, setInputAuthor] = useState('');
     const [inputYear, setInputYear] = useState('');
-    const [books, setBooks] = useState(booksData);
-    const [book, setBook] = useState([]);
-
-
-    //--------------------
-    const [name, setName] = useState(book.title)
-    //---------------------
+    const [IsOpen, setIsOpen] = useState(false);
 
     //Events
     const bookAddHandler = (e) => {
@@ -65,9 +60,9 @@ function App() {
         setBooks(books.filter((book) => book.title !== title));
     };
 
-    const bookEditHandler = (title, updateBook) => {
-        setBooks(books.map((book) => books.title === title ? updateBook : book));
-        console.log(title, updateBook)
+    const bookEditHandler = (title, updateTitle) => {
+        setBooks(books.map((book) => book.title === title ? updateTitle : book));
+        console.log(title, updateTitle)
     };
 
     return (
@@ -76,7 +71,7 @@ function App() {
             <button className="btn" onClick={() => setIsOpen(true)}>
                 Добавить книгу
             </button>
-            <Modal
+            <AddForm
                 inputText={inputText}
                 setInputText={setInputText}
                 inputAuthor={inputAuthor}
@@ -95,15 +90,12 @@ function App() {
             <BookList
                 book={book}
                 setBook={setBook}
-                onEdit={bookEditHandler}
                 onRemove={bookRemoveHandler}
             />
             <EditModal
                 setBooks={setBooks}
                 book={book}
-                name={name}
-                onEdit={bookEditHandler}
-                setName={setName}
+                setBook={setBook}
                 books={books}
             />
         </div>
