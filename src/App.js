@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 //Css
 import './App.css';
@@ -29,7 +29,7 @@ function App() {
     const [inputAuthor, setInputAuthor] = useState('');
     const [inputYear, setInputYear] = useState('');
     const [inputImage, setInputImage] = useState('');
-    const [IsOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     //Events
     const addBook = (e) => {
@@ -54,9 +54,10 @@ function App() {
         setEditing(true);
         setCurrentBook({title: book.title, author: book.author, year: book.year, image: book.image});
     };
-    const updateBook = (title, updatedBook) => {
+    const updateBook = (updatedBook) => {
         setEditing(false);
-        setBooks(books.map((book) => book.title === title ? updatedBook : book));
+        setBooks(books.map((book) => book.title === updatedBook.title ? updatedBook : book));
+        console.log(updatedBook)
     };
 
     return (
@@ -67,9 +68,7 @@ function App() {
             </button>
             {editing ? (
                 <EditForm
-                    open={IsOpen}
                     onClose={() => setIsOpen(false)}
-                    setCurrentBook={setCurrentBook}
                     currentBook={currentBook}
                     editing={editing}
                     setEditing={setEditing}
@@ -87,7 +86,7 @@ function App() {
                     setInputImage={setInputImage}
                     currentBook={currentBook}
                     setCurrentBook={setCurrentBook}
-                    open={IsOpen}
+                    open={isOpen}
                     onClose={() => setIsOpen(false)}
                     onAdd={addBook}
                     updateBook={updateBook}

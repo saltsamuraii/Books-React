@@ -1,6 +1,18 @@
 import React from 'react';
 
-function AddForm({open, onClose, onAdd, updateBook,   currentBook, setCurrentBook, inputText, setInputText, inputAuthor, setInputAuthor, inputYear, setInputYear, inputImage, setInputImage}) {
+function AddForm({
+    open,
+    onClose,
+    onAdd,
+    inputText,
+    setInputText,
+    inputAuthor,
+    setInputAuthor,
+    inputYear,
+    setInputYear,
+    inputImage,
+    setInputImage
+}) {
     if (!open) return null;
 
     //Events
