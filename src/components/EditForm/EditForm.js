@@ -1,25 +1,22 @@
 import React from 'react';
 
-function EditModal({currentBook, updateBook, setCurrentBook, open, setEditing}) {
+function EditForm({currentBook, setCurrentBook, updateBook, open, setEditing}) {
     if (!open) return null;
-
 
    const handleInputChange = event => {
         const { bookName, value } = event.target
-
         setCurrentBook({...currentBook, [bookName]: value})
-    }
-
+    };
     const handleSubmit = event => {
         event.preventDefault()
         if (!currentBook.title || !currentBook.author || !currentBook.year || !currentBook.image) return
-
         updateBook(currentBook.title, currentBook)
-    }
+    };
+
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form  >
             <div>
                 <h2>Редактирование книги</h2>
                 <p>Наименование</p>
@@ -48,7 +45,7 @@ function EditModal({currentBook, updateBook, setCurrentBook, open, setEditing}) 
                 />
             </div>
             <div>
-                <button type="submit">Обновить</button>
+                <button type="submit" onClick={handleSubmit}>Обновить</button>
                 <button onClick={() => setEditing(false)}>Отменить</button>
             </div>
             </form>
@@ -56,4 +53,4 @@ function EditModal({currentBook, updateBook, setCurrentBook, open, setEditing}) 
     );
 }
 
-export default EditModal;
+export default EditForm;

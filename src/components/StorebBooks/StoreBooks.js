@@ -1,16 +1,8 @@
 import React from 'react';
 import s from "./StoreBook.module.css";
 
-function StoreBooks({onRemove, onEdit, books, editRow, currentBook}) {
+function StoreBooks({onRemove, books, editBook}) {
 
-    //Events
-    const bookEditHandler = (title, author, year) => {
-        onEdit(title, author, year);
-    };
-
-    const bookRemoveHandler = (title) => {
-        onRemove(title);
-    };
 
     return (
         <div>
@@ -24,8 +16,8 @@ function StoreBooks({onRemove, onEdit, books, editRow, currentBook}) {
                     </div>
 
                     <div className={s.buttons}>
-                        <button onClick={() => editRow(book)}>Редактировать</button>
-                        <button onClick={() => bookRemoveHandler(book.title)}>Удалить</button>
+                        <button onClick={() => editBook(book)}>Редактировать</button>
+                        <button onClick={() => onRemove(book.title)}>Удалить</button>
                     </div>
                 </div>
             ))}

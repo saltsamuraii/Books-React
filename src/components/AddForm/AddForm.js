@@ -1,12 +1,12 @@
 import React from 'react';
 
-function AddForm({open, onClose, onAdd, inputText, setInputText, inputAuthor, setInputAuthor, inputYear, setInputYear}) {
+function AddForm({open, onClose, onAdd, updateBook,   currentBook, setCurrentBook, inputText, setInputText, inputAuthor, setInputAuthor, inputYear, setInputYear, inputImage, setInputImage}) {
     if (!open) return null;
 
     //Events
-    const bookAddHandler = (title, author, year) => {
-        onAdd(title, author, year);
-    }
+    const addBook = (title, author, year, image) => {
+        onAdd(title, author, year, image);
+    };
 
     //Inputs text
     const inputTextHandler = (e) => {
@@ -14,14 +14,18 @@ function AddForm({open, onClose, onAdd, inputText, setInputText, inputAuthor, se
     };
     const inputAuthorHandler = (e) => {
         setInputAuthor(e.target.value)
-    }
+    };
     const inputYearHandler = (e) => {
         setInputYear(e.target.value)
-    }
+    };
+    const inputImageHandler = (e) => {
+        setInputImage(e.target.value)
+    };
 
 
     return (
         <div>
+            <form>
             <div>
                 <h2>Редактирование книги</h2>
                 <p>Наименование</p>
@@ -41,12 +45,16 @@ function AddForm({open, onClose, onAdd, inputText, setInputText, inputAuthor, se
                        value={inputYear}
                        onChange={inputYearHandler}/>
                 <p>Изображение</p>
-                <input type="url"/>
+                <input type="url"
+                       value={inputImage}
+                       onChange={inputImageHandler}
+                />
             </div>
             <div>
-                <button onClick={bookAddHandler} type="submit">Сохранить</button>
+                <button onClick={addBook} type="submit">Сохранить</button>
                 <button onClick={onClose}>Отменить</button>
             </div>
+            </form>
         </div>
     );
 }
