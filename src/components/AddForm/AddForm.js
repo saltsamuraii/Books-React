@@ -11,7 +11,7 @@ function AddForm({
     inputYear,
     setInputYear,
     inputImage,
-    setInputImage, updateBook, currentBook
+    setInputImage,
 }) {
     if (!open) return null;
 
@@ -34,15 +34,9 @@ function AddForm({
         setInputImage(e.target.value)
     };
 
-    const handleSubmit = event => {
-        event.preventDefault()
-        updateBook(currentBook);
-    };
-
-
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form>
             <div>
                 <h2>Редактирование книги</h2>
                 <p>Наименование</p>
