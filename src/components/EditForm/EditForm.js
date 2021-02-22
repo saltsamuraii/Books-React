@@ -1,27 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-function EditForm({
-        currentBook,
-        updateBook,
-        setEditing
-    }) {
-    const [bookName, setBookName] = useState(' ');
+function EditForm({ currentBook, updateBook, setEditing }) {
+    const [bookName, setBookName] = useState(currentBook);
 
+    useEffect(() => {
+            setBookName(currentBook)
+        }, [currentBook]
+    );
+
+    //Events
     const handleInputChange = (event) => {
-        const { value } = event.target
+        const {value} = event.target
         setBookName(value);
     };
 
-    /*const handleSubmit = event => {
-        event.preventDefault()
-        if (!currentBook.title || !currentBook.author || !currentBook.year || !currentBook.image) return
-        updateBook(currentBook)
-    };*/
-
     const handleSubmit = event => {
         event.preventDefault()
-        updateBook(currentBook)
-    }
+        updateBook(currentBook);
+    };
+    console.log(currentBook);
 
     return (
         <div>
