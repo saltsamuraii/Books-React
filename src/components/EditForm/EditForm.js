@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function EditForm({ currentBook, updateBook, setEditing }) {
+function EditForm({currentBook, updateBook, setEditing }) {
     const [bookName, setBookName] = useState(currentBook);
 
     useEffect(() => {
@@ -16,9 +16,9 @@ function EditForm({ currentBook, updateBook, setEditing }) {
 
     const handleSubmit = event => {
         event.preventDefault()
-        updateBook(currentBook);
+        updateBook(bookName);
     };
-    console.log(currentBook);
+    console.log(bookName);
 
     return (
         <div>
