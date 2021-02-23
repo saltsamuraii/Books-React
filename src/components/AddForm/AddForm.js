@@ -15,11 +15,6 @@ function AddForm({
  }) {
     if (!open) return null;
 
-    //Events
-    const addBook = (title, author, year, image) => {
-        onAdd(title, author, year, image);
-    };
-
     //Inputs text
     const inputTextHandler = (e) => {
         setInputText(e.target.value);
@@ -62,7 +57,7 @@ function AddForm({
                     />
                 </div>
                 <div>
-                    <button onClick={addBook} type="submit">Сохранить</button>
+                    <button onClick={onAdd} type="submit">Сохранить</button>
                     <button onClick={onClose}>Отменить</button>
                 </div>
             </form>

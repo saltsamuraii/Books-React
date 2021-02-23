@@ -1,24 +1,23 @@
 import React, {useState, useEffect} from 'react';
 
 function EditForm({currentBook, updateBook, setEditing }) {
-    const [bookName, setBookName] = useState(currentBook);
+    const [book, setBook] = useState(currentBook);
 
     useEffect(() => {
-            setBookName(currentBook)
+        setBook(currentBook)
         }, [currentBook]
     );
 
     //Events
     const handleInputChange = (event) => {
-        const {value} = event.target
-        setBookName(value);
+        const { value } = event.target
+        setBook(value);
     };
 
     const handleSubmit = event => {
         event.preventDefault()
-        updateBook(bookName);
+        updateBook(book);
     };
-    console.log(bookName);
 
     return (
         <div>
@@ -28,25 +27,25 @@ function EditForm({currentBook, updateBook, setEditing }) {
                     <p>Наименование</p>
                     <input type="text"
                            name="title"
-                           value={bookName.title}
+                           value={book.title}
                            onChange={handleInputChange}
                     />
                     <p>Автор</p>
                     <input type="text"
                            name="author"
-                           value={bookName.author}
+                           value={book.author}
                            onChange={handleInputChange}
                     />
                     <p>Год выпуска</p>
                     <input type="number"
                            min="2000"
                            max="2017"
-                           value={bookName.year}
+                           value={book.year}
                            onChange={handleInputChange}
                     />
                     <p>Изображение</p>
                     <input type="url"
-                           value={bookName.image}
+                           value={book.image}
                            onChange={handleInputChange}
                     />
                 </div>

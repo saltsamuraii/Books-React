@@ -49,18 +49,18 @@ function App() {
     };
 
     const deleteBook = (title) => {
+        setEditing(false)
         setBooks(books.filter((book) => book.title !== title));
     };
 
     const editBook = (book) => {
         setEditing(true);
-        setCurrentBook({title: book.title, author: book.author, year: book.year, image: book.image});
+        setCurrentBook({ title: book.title, author: book.author, year: book.year, image: book.image });
     };
 
     const updateBook = (updatedBook) => {
         setEditing(false);
-        setBooks(books.map((book) => book.title === updatedBook.title ? updatedBook : book));
-        console.log(updatedBook)
+        setBooks(books.map(book => (book.title === updatedBook.title ? updatedBook : book)));
     };
 
     return (
@@ -76,7 +76,6 @@ function App() {
                     editing={editing}
                     setEditing={setEditing}
                     updateBook={updateBook}
-                    setCurrentBook={setCurrentBook}
                 />
             ) : (
                 <AddForm
