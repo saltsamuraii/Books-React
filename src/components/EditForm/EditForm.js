@@ -15,7 +15,7 @@ function EditForm({currentBook, updateBook, setEditing }) {
     };
 
     const handleSubmit = event => {
-        event.preventDefault()
+        event.preventDefault();
         updateBook(book);
     };
 
@@ -50,7 +50,7 @@ function EditForm({currentBook, updateBook, setEditing }) {
                     />
                 </div>
                 <div>
-                    <button type="submit" onClick={handleSubmit}>Обновить</button>
+                    <button type="submit"  onClick={handleSubmit}>Обновить</button>
                     <button onClick={() => setEditing(false)}>Отменить</button>
                 </div>
             </form>
