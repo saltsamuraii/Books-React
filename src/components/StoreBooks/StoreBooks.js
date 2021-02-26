@@ -17,7 +17,7 @@ function StoreBooks({onRemove, books, editBook}) {
 
                     <div className={s.buttons}>
                         <button onClick={() => editBook(book)}>Редактировать</button>
-                        <button onClick={() => onRemove(book.title)}>Удалить</button>
+                        <button onClick={() => onRemove(book.id)}>Удалить</button>
                     </div>
                 </div>
             ))}
