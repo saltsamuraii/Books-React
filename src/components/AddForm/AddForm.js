@@ -1,32 +1,27 @@
 import React, {useState} from 'react';
 
-function AddForm({
-                     open,
-                     onClose,
-                     addBook,
-                     updateBook,
-                 }) {
-    const bookInputState = {title: '', author: '', year: '', image: ''}
+const AddForm = (props) => {
+    const bookInputState = {id: null, title: '', author: '', year: '', image: ''}
     const [book, setBook] = useState(bookInputState);
 
+    if (!props.open) return null;
 
-    if (!open) return null;
-
-    //Inputs text
+    //Events
     const handleInputChange = (event) => {
-        const {name, value} = event.target
+        const { name, value } = event.target
         setBook({...book, [name]: value});
     };
 
     const handleSubmit = event => {
         event.preventDefault();
-        addBook(book);
-        setBook(bookInputState);
+        props.addBook(book);
+        setBook(bookInputState)
+
     };
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <div>
                     <h2>Редактирование книги</h2>
                     <p>Наименование</p>
@@ -55,7 +50,7 @@ function AddForm({
                 </div>
                 <div>
                     <button type="submit">Сохранить</button>
-                    <button onClick={onClose}>Отменить</button>
+                    <button onClick={props.onClose}>Отменить</button>
                 </div>
             </form>
         </div>

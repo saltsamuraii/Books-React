@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 
-function EditForm({currentBook, updateBook, setEditing }) {
-    const [book, setBook] = useState(currentBook);
+const EditForm = (props) => {
+    const [book, setBook] = useState(props.currentBook);
 
     useEffect(() => {
-        setBook(currentBook)
+            setBook(props.currentBook)
         },
-        [currentBook]
+        [props]
+
     );
 
     //Events
@@ -17,12 +18,13 @@ function EditForm({currentBook, updateBook, setEditing }) {
 
     const handleSubmit = event => {
         event.preventDefault();
-        updateBook(book.title, book);
+        props.updateBook(book.id, book);
+
     };
 
     return (
         <div>
-            <form>
+            <form >
                 <div>
                     <h2>Редактирование книги</h2>
                     <p>Наименование</p>
@@ -53,8 +55,8 @@ function EditForm({currentBook, updateBook, setEditing }) {
                     />
                 </div>
                 <div>
-                    <button type="submit"  onClick={handleSubmit}>Обновить</button>
-                    <button onClick={() => setEditing(false)}>Отменить</button>
+                    <button type="submit" onClick={handleSubmit}>Обновить</button>
+                    <button onClick={() => props.setEditing(false)}>Отменить</button>
                 </div>
             </form>
         </div>
