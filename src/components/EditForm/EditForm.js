@@ -5,18 +5,19 @@ function EditForm({currentBook, updateBook, setEditing }) {
 
     useEffect(() => {
         setBook(currentBook)
-        }, [currentBook]
+        },
+        [currentBook]
     );
 
     //Events
     const handleInputChange = (event) => {
-        const { value } = event.target
-        setBook(value);
+        const { name, value } = event.target
+        setBook({...book, [name]: value});
     };
 
     const handleSubmit = event => {
         event.preventDefault();
-        updateBook(book);
+        updateBook(book.title, book);
     };
 
     return (
@@ -38,6 +39,7 @@ function EditForm({currentBook, updateBook, setEditing }) {
                     />
                     <p>Год выпуска</p>
                     <input type="number"
+                           name="year"
                            min="2000"
                            max="2017"
                            value={book.year}
@@ -45,6 +47,7 @@ function EditForm({currentBook, updateBook, setEditing }) {
                     />
                     <p>Изображение</p>
                     <input type="url"
+                           name="image"
                            value={book.image}
                            onChange={handleInputChange}
                     />

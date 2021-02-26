@@ -25,27 +25,11 @@ function App() {
     const [editing, setEditing] = useState(false)
 
     //Hooks changes
-    const [inputText, setInputText] = useState('');
-    const [inputAuthor, setInputAuthor] = useState('');
-    const [inputYear, setInputYear] = useState('');
-    const [inputImage, setInputImage] = useState('');
     const [isOpen, setIsOpen] = useState(false);
 
     //Events
-    const addBook = (e) => {
-        e.preventDefault();
-        setBooks([
-            ...books, {
-                title: inputText,
-                author: inputAuthor,
-                year: inputYear,
-                image: inputImage,
-            }
-        ]);
-        setInputText('');
-        setInputAuthor('');
-        setInputYear('');
-        setInputImage('');
+    const addBook = (book) => {
+        setBooks([...books, book]);
     };
 
     const deleteBook = (title) => {
@@ -58,9 +42,9 @@ function App() {
         setCurrentBook({ title: book.title, author: book.author, year: book.year, image: book.image });
     };
 
-    const updateBook = (updatedBook) => {
+    const updateBook = (title, updateBook) => {
         setEditing(false);
-        setBooks(books.map(book => (book.title === updatedBook.title ? updatedBook : book)));
+        setBooks(books.map(book => (book.title === title ? updateBook : book)));
     };
 
     return (
@@ -79,17 +63,10 @@ function App() {
                 />
             ) : (
                 <AddForm
-                    inputText={inputText}
-                    setInputText={setInputText}
-                    inputAuthor={inputAuthor}
-                    setInputAuthor={setInputAuthor}
-                    inputYear={inputYear}
-                    setInputYear={setInputYear}
-                    inputImage={inputImage}
-                    setInputImage={setInputImage}
                     open={isOpen}
                     onClose={() => setIsOpen(false)}
-                    onAdd={addBook}
+                    addBook={addBook}
+                    updateBook={updateBook}
                 />
             )}
             <StoreBooks

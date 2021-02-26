@@ -1,63 +1,60 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function AddForm({
-  open,
-  onClose,
-  onAdd,
-  inputText,
-  setInputText,
-  inputAuthor,
-  setInputAuthor,
-  inputYear,
-  setInputYear,
-  inputImage,
-  setInputImage,
- }) {
+                     open,
+                     onClose,
+                     addBook,
+                     updateBook,
+                 }) {
+    const bookInputState = {title: '', author: '', year: '', image: ''}
+    const [book, setBook] = useState(bookInputState);
+
+
     if (!open) return null;
 
     //Inputs text
-    const inputTextHandler = (e) => {
-        setInputText(e.target.value);
+    const handleInputChange = (event) => {
+        const {name, value} = event.target
+        setBook({...book, [name]: value});
     };
-    const inputAuthorHandler = (e) => {
-        setInputAuthor(e.target.value)
-    };
-    const inputYearHandler = (e) => {
-        setInputYear(e.target.value)
-    };
-    const inputImageHandler = (e) => {
-        setInputImage(e.target.value)
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        addBook(book);
+        setBook(bookInputState);
     };
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <h2>Редактирование книги</h2>
                     <p>Наименование</p>
                     <input type="text"
                            name="title"
-                           value={inputText}
-                           onChange={inputTextHandler}/>
+                           value={book.title}
+                           onChange={handleInputChange}/>
                     <p>Автор</p>
                     <input type="text"
                            name="author"
-                           value={inputAuthor}
-                           onChange={inputAuthorHandler}/>
+                           value={book.author}
+                           onChange={handleInputChange}/>
                     <p>Год выпуска</p>
                     <input type="number"
+                           name="year"
                            min="2000"
                            max="2017"
-                           value={inputYear}
-                           onChange={inputYearHandler}/>
+                           value={book.year}
+                           onChange={handleInputChange}/>
                     <p>Изображение</p>
                     <input type="url"
-                           value={inputImage}
-                           onChange={inputImageHandler}
+                           name="image"
+                           value={book.image}
+                           onChange={handleInputChange}
                     />
                 </div>
                 <div>
-                    <button onClick={onAdd} type="submit">Сохранить</button>
+                    <button type="submit">Сохранить</button>
                     <button onClick={onClose}>Отменить</button>
                 </div>
             </form>
