@@ -33,6 +33,7 @@ const App = () => {
     }
 
     const deleteBook = id => {
+        setEditing(false)
         setBooks(books.filter((book) => book.id !== id));
     };
 
@@ -65,7 +66,6 @@ const App = () => {
                     open={isOpen}
                     onClose={() => setIsOpen(false)}
                     addBook={addBook}
-                    currentBook={currentBook}
                 />
             )}
             <StoreBooks
