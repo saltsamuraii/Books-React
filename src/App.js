@@ -29,7 +29,6 @@ const App = () => {
 
     //Events
     const addBook = book => {
-        book.id = books.length + 1
         setBooks([...books, book])
     }
 
