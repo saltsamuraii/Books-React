@@ -1,8 +1,7 @@
 import React from 'react';
 import s from "./StoreBook.module.css";
 
-function StoreBooks({onRemove, books, editBook}) {
-
+const StoreBooks = ({onRemove, books, editBook}) => {
 
     return (
         <div>
