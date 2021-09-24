@@ -1,14 +1,11 @@
 import React, {useState, useEffect} from 'react';
 
-const EditForm = (props) => {
-    const [book, setBook] = useState(props.currentBook);
+const EditForm = ({ currentBook }) => {
+    const [book, setBook] = useState(currentBook);
 
     useEffect(() => {
-            setBook(props.currentBook)
-        },
-        [props]
-
-    );
+            setBook(currentBook)
+        }, [currentBook]);
 
     //Events
     const handleInputChange = (event) => {
